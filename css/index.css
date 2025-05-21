@@ -1,6 +1,6 @@
 @font-face {
   font-family: Inter Variable;
-  src: url("../fonts/InterVariable.ttf") format("truetype");
+  src: url("../fonts/InterVariable.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -8,7 +8,7 @@
 
 @font-face {
   font-family: Inter Variable;
-  src: url("../fonts/InterVariable-Italic.ttf") format("truetype");
+  src: url("../fonts/InterVariable-Italic.woff2") format("woff2");
   font-weight: 100 900;
   font-style: italic;
   font-display: swap;
@@ -16,7 +16,7 @@
 
 @font-face {
   font-family: "Icons (Font Awesome)";
-  src: url("../fonts/fa-regular-400.ttf") format("truetype");
+  src: url("../fonts/fa-regular-400.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -24,7 +24,7 @@
 
 @font-face {
   font-family: "Icons Brands (Font Awesome)";
-  src: url("../fonts/fa-brands-400.ttf") format("truetype");
+  src: url("../fonts/fa-brands-400.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -32,7 +32,7 @@
 
 @font-face {
   font-family: "Icons (Font Awesome)";
-  src: url("../fonts/Font-Awesome-6-Free-Solid-900.otf") format("opentype");
+  src: url("../fonts/fa-solid-900.woff2") format("woff2");
   font-weight: 900;
   font-style: normal;
   font-display: swap;
@@ -165,6 +165,11 @@
   }
 }
 
+html,
+body {
+  margin: 0;
+}
+
 body {
   background-color: var(--colors-background);
   font-family: var(--text-font);
@@ -266,6 +271,12 @@ blockquote {
   margin-top: 12px;
   margin-bottom: 12px;
   padding: 12px 40px 12px 36px;
+}
+
+img {
+  vertical-align: middle;
+  max-width: 100%;
+  display: inline-block;
 }
 
 .page-container {
@@ -508,7 +519,6 @@ blockquote {
   grid-auto-columns: 1fr;
   justify-content: space-between;
   place-items: center stretch;
-  min-width: 100%;
   max-width: 1008px;
   margin-left: 0;
   margin-right: 0;
@@ -673,47 +683,40 @@ blockquote {
   padding-right: 0;
 }
 
-.level-3-columns {
-  margin-top: var(--_sizing---m-button-vertical-padding);
-  margin-bottom: var(--_sizing---m-default-vertical);
-  grid-column-gap: 12px;
-  grid-row-gap: 12px;
-  grid-template-rows: auto;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-auto-columns: 1fr;
+.grid {
   display: grid;
-}
-
-.level-1-column {
   margin-top: var(--_sizing---m-default-vertical);
   margin-bottom: var(--_sizing---m-default-vertical);
   grid-column-gap: 12px;
   grid-row-gap: 12px;
   grid-template-rows: auto;
-  grid-template-columns: 1fr;
   grid-auto-columns: 1fr;
-  display: grid;
 }
 
-.level-2-columns {
-  margin-top: var(--_sizing---m-default-vertical);
-  margin-bottom: var(--_sizing---m-default-vertical);
-  grid-column-gap: 12px;
-  grid-row-gap: 12px;
-  grid-template-rows: auto;
-  grid-template-columns: 1fr 1fr;
-  grid-auto-columns: 1fr;
-  display: grid;
-}
-
-.level-2-columns.gap-l {
+.grid.gap-l {
   grid-column-gap: 24px;
   grid-row-gap: 24px;
 }
 
-.level-2-columns.gap-xl {
+.grid.gap-xl {
   grid-column-gap: 60px;
   grid-row-gap: 60px;
+}
+
+.columns-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.columns-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.columns-1\/2-1 {
+  grid-template-columns: minmax(0, 0.5fr) minmax(0, 1fr);
+}
+
+.columns-1-1\/2 {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.5fr);
 }
 
 .card-with-icon {
@@ -791,48 +794,6 @@ blockquote {
 
 .card-code-block.dark {
   background-color: #2b2b2b;
-}
-
-.level-2-columns-0-5-1 {
-  margin-top: var(--_sizing---m-default-vertical);
-  margin-bottom: var(--_sizing---m-default-vertical);
-  grid-column-gap: 12px;
-  grid-row-gap: 12px;
-  grid-template-rows: auto;
-  grid-template-columns: 0.5fr 1fr;
-  grid-auto-columns: 1fr;
-  display: grid;
-}
-
-.level-2-columns-0-5-1.gap-l {
-  grid-column-gap: 24px;
-  grid-row-gap: 24px;
-}
-
-.level-2-columns-0-5-1.gap-xl {
-  grid-column-gap: 60px;
-  grid-row-gap: 60px;
-}
-
-.level-2-columns-1-0-5 {
-  margin-top: var(--_sizing---m-default-vertical);
-  margin-bottom: var(--_sizing---m-default-vertical);
-  grid-column-gap: 12px;
-  grid-row-gap: 12px;
-  grid-template-rows: auto;
-  grid-template-columns: 1fr 0.5fr;
-  grid-auto-columns: 1fr;
-  display: grid;
-}
-
-.level-2-columns-1-0-5.gap-l {
-  grid-column-gap: 24px;
-  grid-row-gap: 24px;
-}
-
-.level-2-columns-1-0-5.gap-xl {
-  grid-column-gap: 60px;
-  grid-row-gap: 60px;
 }
 
 .nav-link-external {
@@ -1124,9 +1085,7 @@ blockquote {
   text-decoration-color: var(--colors-accent-b);
 }
 
-.image-2,
-.image-3,
-.image-4 {
+.image-full {
   width: 100%;
 }
 
@@ -1226,11 +1185,14 @@ blockquote {
     padding: 12px 24px;
   }
 
-  .level-2-columns-0-5-1.gap-xl {
-    grid-column-gap: 12px;
-    grid-row-gap: 12px;
-    grid-template-rows: auto auto;
-    grid-template-columns: 1fr;
+  .grid.gap-l {
+    grid-column-gap: 16px;
+    grid-row-gap: 16px;
+  }
+
+  .grid.gap-xl {
+    grid-column-gap: 24px;
+    grid-row-gap: 24px;
   }
 
   .button-group-vertical {
@@ -1302,11 +1264,11 @@ blockquote {
     padding-top: 24px;
   }
 
-  .level-3-columns,
-  .level-2-columns,
-  .cards-with-icons-container,
-  .level-2-columns-0-5-1,
-  .level-2-columns-1-0-5 {
+  .columns-2,
+  .columns-3,
+  .columns-1\/2-1,
+  .columns-1-1\/2,
+  .cards-with-icons-container {
     grid-template-columns: 1fr;
   }
 }
@@ -1364,40 +1326,4 @@ blockquote {
   .footer-layout {
     grid-template-columns: 2fr;
   }
-}
-
-@font-face {
-  font-family: "Inter Variable";
-  src: url("../fonts/InterVariable.ttf") format("truetype");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Inter Variable";
-  src: url("../fonts/InterVariable-Italic.ttf") format("truetype");
-  font-weight: 100 900;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Icons (Font Awesome)";
-  src: url("../fonts/fa-regular-400.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Icons Brands (Font Awesome)";
-  src: url("../fonts/fa-brands-400.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Icons (Font Awesome)";
-  src: url("../fonts/Font-Awesome-6-Free-Solid-900.otf") format("opentype");
-  font-weight: 900;
-  font-style: normal;
-  font-display: swap;
 }
