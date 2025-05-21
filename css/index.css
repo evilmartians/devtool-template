@@ -39,6 +39,15 @@
 }
 
 :root {
+  /** There features 
+  These are values that determine the overall look of the theme.
+  - Saturation controls how much of accent color will be mixed into text, background, and surface colors.
+  - Contrast controls how contrast the text colors will be.
+  */
+  --theme-hue: 255;
+  --theme-saturation: 0.2; /* 0...1 where 0 means grayscale colors; 1 means fully saturated colors */
+  --theme-contrast: 0.8; /* 0...1 where 0 means low contrast; 1 means high contrast, black-n-white in fact */
+
   /* Fonts */
   --text-font: "Inter Variable", Arial, sans-serif;
   --icons-brands: "Icons Brands (Font Awesome)", Arial, sans-serif;
@@ -51,13 +60,13 @@
   --colors-text-secondary: #757a7f;
   --colors-text-tertiary: #a7acb2;
   --colors-accent: #0081ff;
-  --colors-accent-b: #0081ff29;
+  --colors-accent-border: #0081ff29;
   --colors-on-accent: white;
-  --colors-button-primary-bg-hover: #0088f0d9;
-  --colors-button-secondary-bg-hover: #0088f033;
-  --colors-border-level-2: #99a3ae29; /* TODO: rename */
-  --colors-border-level-3: #99a3ae52; /* TODO: rename */
-  --colors-background-blur: #ffffffe6; /* TODO: use background */
+  --colors-accent-hover: #0088f0d9;
+  --colors-accent-border-hover: #0088f033;
+  --colors-border-level-2: #99a3ae29;
+  --colors-border-level-3: #99a3ae52;
+  --colors-background-blur: #ffffffe6;
   --colors-gradient-bg-start: #0081ff14;
   --colors-gradient-bg-end: #0081ff00;
 
@@ -99,39 +108,99 @@
 }
 
 .theme-light {
-  --colors-background: white;
-  --colors-surface: #99a3ae14;
-  --colors-text-primary: #363e48;
-  --colors-text-secondary: #757a7f;
-  --colors-text-tertiary: #a7acb2;
-  --colors-accent: #0081ff;
-  --colors-accent-b: #0081ff29;
+  /** Base color
+  By default it's blue ≈ #0289ff
+  Usually it's your brand color. Simply provide your value and the whole theme will be recalculated automatically.
+  Default value is in OKLCH because it produces richer P3 colors, however you can use any color format. 
+   */
+  /* --colors-accent: #00bc81; */
+  --color-accent: oklch(0.64 0.21 255);
+
+  /* Relative colors 
+  These colors are calculated based on the accent color and saturation/contrast values.
+  Feel free to provide exact values if you want to override them.
+  */
+  --colors-background-l: calc(0.7 + 0.3 * var(--theme-contrast));
+  --colors-background: oklch(
+    from var(--colors-accent) var(--colors-background-l)
+      calc((1 - var(--colors-background-l)) * 0.6 * var(--theme-saturation)) h
+  );
+  --colors-background-blur: oklch(from var(--colors-background) l c h / 0.8);
+
+  --colors-text-primary-l: calc(0.4 - 0.4 * pow(var(--theme-contrast), 10));
+  --colors-text-primary: oklch(
+    from var(--colors-accent) var(--colors-text-primary-l)
+      calc(var(--colors-text-primary-l) * 0.3 * var(--theme-saturation)) h
+  );
+
+  --colors-text-secondary: oklch(from var(--colors-text-primary) l c h / 0.7);
+  --colors-text-tertiary: oklch(from var(--colors-text-primary) l c h / 0.42);
+  --colors-accent-hover: oklch(from var(--colors-accent) calc(l - 0.1) c h);
+  --colors-accent-border: oklch(from var(--colors-accent) l c h / 0.16);
+  --colors-accent-border-hover: oklch(
+    from var(--colors-accent-border) calc(l - 0.1) c h
+  );
+
+  --colors-surface: oklch(from var(--colors-text-primary) l c h / 0.04);
   --colors-on-accent: white;
-  --colors-button-primary-bg-hover: #0088f0d9;
-  --colors-button-secondary-bg-hover: #0088f033;
-  --colors-border-level-2: #99a3ae29;
-  --colors-border-level-3: #99a3ae52;
-  --colors-background-blur: #ffffffe6;
-  --colors-gradient-bg-start: #0081ff14;
-  --colors-gradient-bg-end: #0081ff00;
+  --colors-border-level-2: oklch(from var(--colors-text-primary) l c h / 0.08);
+  --colors-border-level-3: oklch(from var(--colors-text-primary) l c h / 0.16);
+
+  --colors-gradient-bg-start: oklch(
+    from var(--colors-accent) l calc(0.3 * pow(var(--theme-saturation), 0.5)) h /
+      calc(0.5 - 0.5 * pow(var(--theme-contrast), 2))
+  );
+  --colors-gradient-bg-end: oklch(
+    from var(--colors-gradient-bg-start) l c h / 0
+  );
 }
 
 .theme-dark {
-  --colors-background: #1f1f20;
-  --colors-surface: #9aa3af14;
-  --colors-text-primary: #e5f0fc;
-  --colors-text-secondary: #c2c7cd;
-  --colors-text-tertiary: #94999f;
-  --colors-accent: #0081ff;
-  --colors-accent-b: #0081ff29;
+  /** Base color
+  By default it's blue ≈ #0289ff
+  Usually it's your brand color. Simply provide your value and the whole theme will be recalculated automatically.
+  Default value is in OKLCH because it produces richer P3 colors, however you can use any color format. 
+   */
+  /* --colors-accent: #00bc81; */
+  --color-accent: oklch(0.53 0.22 255);
+
+  /* Relative colors 
+  These colors are calculated based on the accent color and saturation/contrast values.
+  Feel free to provide exact values if you want to override them.
+  */
+  --colors-background-l: calc(0.35 - 0.35 * pow(var(--theme-contrast), 4));
+  --colors-background: oklch(
+    from var(--colors-accent) var(--colors-background-l)
+      calc(var(--colors-background-l) * 0.3 * var(--theme-saturation)) h
+  );
+  --colors-background-blur: oklch(from var(--colors-background) l c h / 0.9);
+
+  --colors-text-primary-l: calc(0.7 + 0.3 * pow(var(--theme-contrast), 0.8));
+  --colors-text-primary: oklch(
+    from var(--colors-accent) var(--colors-text-primary-l)
+      calc((1 - var(--colors-text-primary-l)) * 0.6 * var(--theme-saturation)) h
+  );
+
+  --colors-text-secondary: oklch(from var(--colors-text-primary) l c h / 0.7);
+  --colors-text-tertiary: oklch(from var(--colors-text-primary) l c h / 0.5);
+  --colors-accent-hover: oklch(from var(--colors-accent) calc(l + 0.1) c h);
+  --colors-accent-border: oklch(from var(--colors-accent) l c h / 0.16);
+  --colors-accent-border-hover: oklch(
+    from var(--colors-accent-border) calc(l + 0.1) c h
+  );
+
+  --colors-surface: oklch(from var(--colors-text-primary) l c h / 0.04);
   --colors-on-accent: white;
-  --colors-button-primary-bg-hover: #0088f0d9;
-  --colors-button-secondary-bg-hover: #0088f04d;
-  --colors-border-level-2: #9aa3af29;
-  --colors-border-level-3: #9aa3af52;
-  --colors-background-blur: #1f1f20e6;
-  --colors-gradient-bg-start: #0081ff1f;
-  --colors-gradient-bg-end: #0081ff00;
+  --colors-border-level-2: oklch(from var(--colors-text-primary) l c h / 0.08);
+  --colors-border-level-3: oklch(from var(--colors-text-primary) l c h / 0.16);
+
+  --colors-gradient-bg-start: oklch(
+    from var(--colors-accent) l calc(0.3 * pow(var(--theme-saturation), 0.5)) h /
+      calc(0.5 - 0.5 * pow(var(--theme-contrast), 2))
+  );
+  --colors-gradient-bg-end: oklch(
+    from var(--colors-gradient-bg-start) l c h / 0
+  );
 }
 
 .layout-blockcontainer {
@@ -235,8 +304,8 @@ a {
   -webkit-text-stroke-width: 0px;
   text-underline-offset: 0px;
   text-decoration: underline;
-  -webkit-text-decoration-color: var(--colors-accent-b);
-  text-decoration-color: var(--colors-accent-b);
+  -webkit-text-decoration-color: var(--colors-accent-border);
+  text-decoration-color: var(--colors-accent-border);
   -webkit-text-decoration-skip-ink: none;
   text-decoration-skip-ink: none;
   text-underline-position: under;
@@ -244,7 +313,7 @@ a {
 }
 
 a:hover {
-  color: var(--colors-button-primary-bg-hover);
+  color: var(--colors-accent-hover);
 }
 
 ul,
@@ -345,8 +414,8 @@ blockquote {
 
 .paragraph-s.pseudo-link {
   text-decoration: underline;
-  -webkit-text-decoration-color: var(--colors-accent-b);
-  text-decoration-color: var(--colors-accent-b);
+  -webkit-text-decoration-color: var(--colors-accent-border);
+  text-decoration-color: var(--colors-accent-border);
   text-decoration-thickness: 2px;
 }
 
@@ -410,10 +479,11 @@ blockquote {
   font-weight: var(--ui-button-font-weight);
   text-align: center;
   border-radius: 12px;
+  text-decoration: none;
 }
 
 .button-primary:hover {
-  background-color: var(--colors-button-primary-bg-hover);
+  background-color: var(--colors-accent-hover);
   color: var(--colors-on-accent);
 }
 
@@ -430,7 +500,7 @@ blockquote {
 .button-secondary {
   padding: var(--_sizing---m-button-vertical-padding)
     var(--_sizing---m-button-horizontal-padding);
-  background-color: var(--colors-accent-b);
+  background-color: var(--colors-accent-border);
   color: var(--colors-accent);
   font-size: var(--ui-m-size);
   line-height: var(--ui-m-line-height);
@@ -442,7 +512,7 @@ blockquote {
 }
 
 .button-secondary:hover {
-  background-color: var(--colors-button-secondary-bg-hover);
+  background-color: var(--colors-accent-border-hover);
 }
 
 .button-secondary.size-small {
@@ -513,6 +583,10 @@ blockquote {
   margin-left: 0;
   margin-right: 0;
   padding: 12px 12px 12px 24px;
+  display: flex;
+}
+
+.nav-brand {
   display: flex;
 }
 
@@ -1102,7 +1176,7 @@ blockquote {
 }
 
 .icon-link-s:hover {
-  color: var(--colors-button-primary-bg-hover);
+  color: var(--colors-accent-hover);
 }
 
 .flex-block {
@@ -1120,8 +1194,8 @@ blockquote {
 
 .text-link-m {
   text-decoration: underline;
-  -webkit-text-decoration-color: var(--colors-accent-b);
-  text-decoration-color: var(--colors-accent-b);
+  -webkit-text-decoration-color: var(--colors-accent-border);
+  text-decoration-color: var(--colors-accent-border);
 }
 
 .image-2,
@@ -1400,4 +1474,40 @@ blockquote {
   font-weight: 900;
   font-style: normal;
   font-display: swap;
+}
+
+.theme-controls {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 16px;
+  width: 480px;
+  background-color: var(--colors-background);
+  box-shadow: 0 0 0 1px var(--colors-border-level-2);
+  -webkit-backdrop-filter: blur(40px);
+  backdrop-filter: blur(40px);
+  border-radius: 16px;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-auto-columns: 1fr;
+  place-items: center;
+  gap: 16px;
+  padding: 12px 12px 12px 24px;
+  display: flex;
+  z-index: 999;
+}
+
+.slider-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.slider-group label {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+input[type="range"] {
+  width: 150px;
 }
