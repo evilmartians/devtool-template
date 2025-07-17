@@ -29,7 +29,11 @@
   <link rel="icon" href="images/favicon/favicon.ico" sizes="32x32" />
   <link rel="icon" href="images/favicon/icon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="images/favicon/apple-touch-icon.png" />
+  
+  <!-- Preload fonts -->
+  <link rel="preload" href="fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin />
 
+  <!-- Styles -->
   <link href="vendor/font-awesome-6.7.2/css/all.min.css" rel="stylesheet" />
   <link href="css/index.css" rel="stylesheet" type="text/css" />
   <link href="css/tablet.css" rel="stylesheet" type="text/css" />
@@ -60,7 +64,7 @@
         </a>
         <a href="#" class="button tertiary compact hide-on-mobile">Sign In</a>
         <a href="#" class="button primary compact">Sign Up</a>
-        <button class="button ghost compact nav-hamburger" data-mobile-toggle>
+        <button class="button ghost compact nav-hamburger" data-mobile-toggle aria-label="Show menu">
           <span class="fa-solid fa-bars icon m"></span>
         </button>
       </div>
