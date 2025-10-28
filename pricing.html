@@ -20,13 +20,18 @@
   <!-- Preload fonts -->
   <link rel="preload" href="fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin />
 
+  <!-- DocSearch CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@4" />
+
   <!-- Styles -->
   <link href="vendor/font-awesome-6.7.2/css/all.min.css" rel="stylesheet" />
   <link href="css/index.css" rel="stylesheet" type="text/css" />
   <link href="css/pricing.css" rel="stylesheet" type="text/css" />
   <link href="css/tablet.css" rel="stylesheet" type="text/css" />
   <link href="css/mobile.css" rel="stylesheet" type="text/css" />
+  <link href="css/search.css" rel="stylesheet" type="text/css" />
   <script src="js/main.js" type="text/javascript" defer></script>
+  <script src="js/search.js" type="text/javascript" defer></script>
   <script src="js/pricing.js" type="text/javascript" defer></script>
 </head>
 
@@ -34,8 +39,10 @@
   <div class="background-gradient"></div>
   <div class="page-container">
     <header class="nav-container">
-      <a href="index.html" class="nav-brand"><img src="images/Logo-Template.svg" loading="lazy"
-          alt="Logo Template" /></a>
+      <div class="nav-brand">
+        <a href="index.html"><img src="images/Logo-Template.svg" width="132" height="28" alt="Logo Template" /></a>
+        <div id="docsearch" class="button tertiary compact search-container" aria-label="Search"></div>
+      </div>
       <nav role="navigation" class="nav-menu" data-navigation>
         <a href="pricing.html" class="nav-link">Pricing</a>
         <a href="https://mintlify.com" class="nav-link">Docs ↗</a>
@@ -302,6 +309,7 @@
       </div>
     </footer>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/@docsearch/js@4"></script>
 </body>
 
 </html>
