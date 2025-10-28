@@ -41,3 +41,7 @@
   line-height: var(--line-height-ui-s);
   font-weight: var(--ui-button-font-weight);
 }
+
+#docsearch-input:focus-within {
+  outline: none;
+}
