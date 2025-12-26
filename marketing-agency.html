@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXUS — Agencia de Marketing Digital Disruptiva</title>
+  <meta name="description" content="Transformamos marcas en experiencias digitales inolvidables. Branding, Social Media, Meta Ads, AdSense y más.">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome -->
+  <link href="vendor/font-awesome-6.7.2/css/all.min.css" rel="stylesheet" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'syne': ['Syne', 'sans-serif'],
+            'space': ['Space Grotesk', 'monospace'],
+          },
+          colors: {
+            'neon-pink': '#FF006E',
+            'neon-blue': '#00F5FF',
+            'neon-purple': '#8B00FF',
+            'neon-green': '#00FF94',
+            'dark-bg': '#0A0A0F',
+          },
+          animation: {
+            'float': 'float 6s ease-in-out infinite',
+            'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+            'slide-in': 'slide-in 0.8s ease-out',
+            'rotate-slow': 'rotate-slow 20s linear infinite',
+          },
+          keyframes: {
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-20px)' },
+            },
+            'pulse-glow': {
+              '0%, 100%': { opacity: '1', transform: 'scale(1)' },
+              '50%': { opacity: '0.7', transform: 'scale(1.05)' },
+            },
+            'slide-in': {
+              '0%': { transform: 'translateX(-100%)', opacity: '0' },
+              '100%': { transform: 'translateX(0)', opacity: '1' },
+            },
+            'rotate-slow': {
+              '0%': { transform: 'rotate(0deg)' },
+              '100%': { transform: 'rotate(360deg)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Space Grotesk', monospace;
+      background: #0A0A0F;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #FF006E 0%, #00F5FF 50%, #8B00FF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .neon-glow {
+      box-shadow: 0 0 20px rgba(255, 0, 110, 0.5), 0 0 40px rgba(0, 245, 255, 0.3);
+    }
+
+    .glass-morphism {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .blob {
+      border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+      filter: blur(40px);
+    }
+
+    .text-stroke {
+      -webkit-text-stroke: 2px #FF006E;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Cursor personalizado */
+    * {
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="%23FF006E" opacity="0.5"/></svg>'), auto;
+    }
+
+    a, button {
+      cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28"><circle cx="14" cy="14" r="10" fill="%2300F5FF" opacity="0.7"/></svg>'), pointer;
+    }
+  </style>
+</head>
+
+<body class="bg-dark-bg text-white overflow-x-hidden">
+
+  <!-- Blobs de fondo animados -->
+  <div class="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0">
+    <div class="blob absolute top-20 left-10 w-96 h-96 bg-neon-pink opacity-20 animate-float"></div>
+    <div class="blob absolute bottom-20 right-10 w-80 h-80 bg-neon-blue opacity-20 animate-float" style="animation-delay: 2s;"></div>
+    <div class="blob absolute top-1/2 left-1/2 w-64 h-64 bg-neon-purple opacity-15 animate-float" style="animation-delay: 4s;"></div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full z-50 glass-morphism">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+        <div class="font-syne font-bold text-3xl gradient-text">
+          NEXUS
+        </div>
+        <div class="hidden md:flex space-x-8 font-space">
+          <a href="#servicios" class="hover:text-neon-pink transition-colors">Servicios</a>
+          <a href="#proceso" class="hover:text-neon-blue transition-colors">Proceso</a>
+          <a href="#portfolio" class="hover:text-neon-purple transition-colors">Portfolio</a>
+        </div>
+        <button class="px-6 py-3 bg-gradient-to-r from-neon-pink to-neon-blue rounded-full font-semibold neon-glow hover:scale-105 transition-transform">
+          Contactar
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center justify-center pt-20 z-10">
+    <div class="max-w-7xl mx-auto px-6 py-20">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+
+        <!-- Texto Hero -->
+        <div class="space-y-8 animate-slide-in">
+          <div class="inline-block px-4 py-2 glass-morphism rounded-full text-sm font-space mb-4">
+            <span class="text-neon-green">●</span> Disponible para nuevos proyectos
+          </div>
+
+          <h1 class="font-syne font-bold text-6xl md:text-8xl leading-tight">
+            <span class="gradient-text">Rompemos</span>
+            <br>
+            <span class="text-stroke">las reglas</span>
+            <br>
+            <span class="text-white">del marketing</span>
+          </h1>
+
+          <p class="text-xl text-gray-400 font-space max-w-lg">
+            No somos una agencia convencional. Creamos <span class="text-neon-blue font-semibold">experiencias digitales</span> que explotan en redes sociales y convierten audiencias en comunidades fanáticas.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <button class="px-8 py-4 bg-neon-pink rounded-full font-semibold text-lg hover:bg-opacity-80 transition-all hover:scale-105 neon-glow">
+              Explotar mi marca →
+            </button>
+            <button class="px-8 py-4 glass-morphism rounded-full font-semibold text-lg hover:bg-white hover:bg-opacity-10 transition-all">
+              Ver casos de éxito
+            </button>
+          </div>
+
+          <!-- Stats -->
+          <div class="grid grid-cols-3 gap-8 pt-8">
+            <div>
+              <div class="text-4xl font-bold gradient-text">500%</div>
+              <div class="text-sm text-gray-500">ROI Promedio</div>
+            </div>
+            <div>
+              <div class="text-4xl font-bold gradient-text">150+</div>
+              <div class="text-sm text-gray-500">Marcas Disruptas</div>
+            </div>
+            <div>
+              <div class="text-4xl font-bold gradient-text">50M+</div>
+              <div class="text-sm text-gray-500">Impresiones</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Elemento visual 3D -->
+        <div class="relative hidden md:block">
+          <div class="relative w-full h-[600px]">
+            <!-- Círculos animados -->
+            <div class="absolute top-1/4 left-1/4 w-64 h-64 border-4 border-neon-pink rounded-full animate-pulse-glow"></div>
+            <div class="absolute top-1/3 right-1/4 w-48 h-48 border-4 border-neon-blue rounded-full animate-pulse-glow" style="animation-delay: 1s;"></div>
+            <div class="absolute bottom-1/4 left-1/3 w-32 h-32 border-4 border-neon-purple rounded-full animate-pulse-glow" style="animation-delay: 2s;"></div>
+
+            <!-- Cuadrado rotativo -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+              <div class="w-80 h-80 border-4 border-neon-green animate-rotate-slow rounded-3xl"></div>
+            </div>
+
+            <!-- Texto flotante -->
+            <div class="absolute top-10 right-10 glass-morphism px-4 py-2 rounded-lg animate-float">
+              <i class="fa-brands fa-instagram text-neon-pink text-2xl"></i>
+            </div>
+            <div class="absolute bottom-20 left-10 glass-morphism px-4 py-2 rounded-lg animate-float" style="animation-delay: 1s;">
+              <i class="fa-brands fa-meta text-neon-blue text-2xl"></i>
+            </div>
+            <div class="absolute top-1/2 right-0 glass-morphism px-4 py-2 rounded-lg animate-float" style="animation-delay: 2s;">
+              <i class="fa-brands fa-tiktok text-neon-purple text-2xl"></i>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+      <i class="fa-solid fa-chevron-down text-neon-pink text-2xl"></i>
+    </div>
+  </section>
+
+  <!-- Servicios Section -->
+  <section id="servicios" class="relative py-32 z-10">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <!-- Header -->
+      <div class="text-center mb-20">
+        <h2 class="font-syne font-bold text-5xl md:text-7xl mb-6">
+          Servicios que <span class="gradient-text">explotan</span>
+        </h2>
+        <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+          No hacemos marketing tradicional. Creamos movimientos digitales que se vuelven virales.
+        </p>
+      </div>
+
+      <!-- Grid de Servicios Asimétrico -->
+      <div class="grid md:grid-cols-12 gap-6">
+
+        <!-- Branding -->
+        <div class="md:col-span-7 glass-morphism rounded-3xl p-8 hover:bg-white hover:bg-opacity-10 transition-all group">
+          <div class="flex items-start justify-between mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-neon-pink to-neon-purple rounded-2xl flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-palette"></i>
+            </div>
+            <span class="text-6xl font-bold text-gray-800">01</span>
+          </div>
+          <h3 class="font-syne font-bold text-3xl mb-4">Branding Disruptivo</h3>
+          <p class="text-gray-400 mb-6">
+            Creamos identidades de marca que no se olvidan. Desde logos que se vuelven memes hasta paletas de colores que rompen esquemas.
+          </p>
+          <ul class="space-y-2 text-sm text-gray-500">
+            <li><i class="fa-solid fa-check text-neon-pink mr-2"></i>Identidad visual completa</li>
+            <li><i class="fa-solid fa-check text-neon-pink mr-2"></i>Naming y copywriting</li>
+            <li><i class="fa-solid fa-check text-neon-pink mr-2"></i>Brand guidelines</li>
+            <li><i class="fa-solid fa-check text-neon-pink mr-2"></i>Estrategia de posicionamiento</li>
+          </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div class="md:col-span-5 glass-morphism rounded-3xl p-8 hover:bg-white hover:bg-opacity-10 transition-all group">
+          <div class="flex items-start justify-between mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-neon-blue to-neon-green rounded-2xl flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-hashtag"></i>
+            </div>
+            <span class="text-6xl font-bold text-gray-800">02</span>
+          </div>
+          <h3 class="font-syne font-bold text-3xl mb-4">Social Media</h3>
+          <p class="text-gray-400 mb-6">
+            Contenido que para el scroll. Estrategias que viralizan. Comunidades que defienden tu marca.
+          </p>
+          <div class="flex gap-3">
+            <div class="w-10 h-10 bg-gradient-to-br from-pink-500 to-yellow-500 rounded-lg flex items-center justify-center">
+              <i class="fa-brands fa-instagram"></i>
+            </div>
+            <div class="w-10 h-10 bg-black rounded-lg flex items-center justify-center">
+              <i class="fa-brands fa-tiktok"></i>
+            </div>
+            <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
+              <i class="fa-brands fa-facebook"></i>
+            </div>
+            <div class="w-10 h-10 bg-blue-400 rounded-lg flex items-center justify-center">
+              <i class="fa-brands fa-twitter"></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Meta Ads -->
+        <div class="md:col-span-5 glass-morphism rounded-3xl p-8 hover:bg-white hover:bg-opacity-10 transition-all group">
+          <div class="flex items-start justify-between mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-neon-purple to-neon-pink rounded-2xl flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
+              <i class="fa-brands fa-meta"></i>
+            </div>
+            <span class="text-6xl font-bold text-gray-800">03</span>
+          </div>
+          <h3 class="font-syne font-bold text-3xl mb-4">Meta Ads</h3>
+          <p class="text-gray-400 mb-6">
+            Campañas que convierten. Segmentación quirúrgica. ROI que hace llorar (de felicidad).
+          </p>
+          <div class="grid grid-cols-2 gap-4 text-center">
+            <div class="glass-morphism rounded-lg p-3">
+              <div class="text-2xl font-bold text-neon-pink">-60%</div>
+              <div class="text-xs text-gray-500">CPA Promedio</div>
+            </div>
+            <div class="glass-morphism rounded-lg p-3">
+              <div class="text-2xl font-bold text-neon-blue">+320%</div>
+              <div class="text-xs text-gray-500">ROAS</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Google AdSense -->
+        <div class="md:col-span-7 glass-morphism rounded-3xl p-8 hover:bg-white hover:bg-opacity-10 transition-all group">
+          <div class="flex items-start justify-between mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-neon-green to-neon-blue rounded-2xl flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
+              <i class="fa-brands fa-google"></i>
+            </div>
+            <span class="text-6xl font-bold text-gray-800">04</span>
+          </div>
+          <h3 class="font-syne font-bold text-3xl mb-4">Google Ads & AdSense</h3>
+          <p class="text-gray-400 mb-6">
+            Domina Google. Aparece primero. Convierte búsquedas en ventas. Monetiza tu contenido como nunca.
+          </p>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-3 py-1 glass-morphism rounded-full text-xs">Search Ads</span>
+            <span class="px-3 py-1 glass-morphism rounded-full text-xs">Display Network</span>
+            <span class="px-3 py-1 glass-morphism rounded-full text-xs">YouTube Ads</span>
+            <span class="px-3 py-1 glass-morphism rounded-full text-xs">Shopping Ads</span>
+            <span class="px-3 py-1 glass-morphism rounded-full text-xs">Remarketing</span>
+            <span class="px-3 py-1 glass-morphism rounded-full text-xs">AdSense Optimization</span>
+          </div>
+        </div>
+
+        <!-- Influencer Marketing -->
+        <div class="md:col-span-6 glass-morphism rounded-3xl p-8 hover:bg-white hover:bg-opacity-10 transition-all group">
+          <div class="flex items-start justify-between mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-yellow-400 to-neon-pink rounded-2xl flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-fire"></i>
+            </div>
+            <span class="text-6xl font-bold text-gray-800">05</span>
+          </div>
+          <h3 class="font-syne font-bold text-3xl mb-4">Influencer Marketing</h3>
+          <p class="text-gray-400 mb-6">
+            Conectamos tu marca con las voces que importan. Campañas con influencers que generan conversaciones reales.
+          </p>
+        </div>
+
+        <!-- Analytics & Growth -->
+        <div class="md:col-span-6 glass-morphism rounded-3xl p-8 hover:bg-white hover:bg-opacity-10 transition-all group">
+          <div class="flex items-start justify-between mb-6">
+            <div class="w-16 h-16 bg-gradient-to-br from-neon-blue to-neon-purple rounded-2xl flex items-center justify-center text-3xl group-hover:scale-110 transition-transform">
+              <i class="fa-solid fa-chart-line"></i>
+            </div>
+            <span class="text-6xl font-bold text-gray-800">06</span>
+          </div>
+          <h3 class="font-syne font-bold text-3xl mb-4">Analytics & Growth</h3>
+          <p class="text-gray-400 mb-6">
+            Data-driven decisions. Optimización constante. Crecimiento exponencial que se mide en resultados, no en métricas vanidosas.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Proceso Section -->
+  <section id="proceso" class="relative py-32 z-10">
+    <div class="max-w-7xl mx-auto px-6">
+
+      <div class="text-center mb-20">
+        <h2 class="font-syne font-bold text-5xl md:text-7xl mb-6">
+          Nuestro <span class="gradient-text">proceso</span>
+        </h2>
+        <p class="text-xl text-gray-400">
+          Metodología probada. Resultados garantizados.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-4 gap-8">
+
+        <div class="group">
+          <div class="glass-morphism rounded-3xl p-8 h-full hover:bg-white hover:bg-opacity-10 transition-all">
+            <div class="text-6xl font-bold gradient-text mb-4">01</div>
+            <h3 class="font-syne font-bold text-2xl mb-3">Inmersión</h3>
+            <p class="text-gray-400">
+              Nos sumergimos en tu marca, mercado y competencia. Entendemos tu ADN.
+            </p>
+          </div>
+          <div class="hidden md:block text-center mt-4">
+            <i class="fa-solid fa-arrow-right text-neon-pink text-3xl"></i>
+          </div>
+        </div>
+
+        <div class="group">
+          <div class="glass-morphism rounded-3xl p-8 h-full hover:bg-white hover:bg-opacity-10 transition-all">
+            <div class="text-6xl font-bold gradient-text mb-4">02</div>
+            <h3 class="font-syne font-bold text-2xl mb-3">Estrategia</h3>
+            <p class="text-gray-400">
+              Diseñamos un plan de acción disruptivo adaptado a tus objetivos.
+            </p>
+          </div>
+          <div class="hidden md:block text-center mt-4">
+            <i class="fa-solid fa-arrow-right text-neon-blue text-3xl"></i>
+          </div>
+        </div>
+
+        <div class="group">
+          <div class="glass-morphism rounded-3xl p-8 h-full hover:bg-white hover:bg-opacity-10 transition-all">
+            <div class="text-6xl font-bold gradient-text mb-4">03</div>
+            <h3 class="font-syne font-bold text-2xl mb-3">Ejecución</h3>
+            <p class="text-gray-400">
+              Creamos y lanzamos campañas que rompen el internet.
+            </p>
+          </div>
+          <div class="hidden md:block text-center mt-4">
+            <i class="fa-solid fa-arrow-right text-neon-purple text-3xl"></i>
+          </div>
+        </div>
+
+        <div class="group">
+          <div class="glass-morphism rounded-3xl p-8 h-full hover:bg-white hover:bg-opacity-10 transition-all">
+            <div class="text-6xl font-bold gradient-text mb-4">04</div>
+            <h3 class="font-syne font-bold text-2xl mb-3">Optimización</h3>
+            <p class="text-gray-400">
+              Analizamos, ajustamos y escalamos para maximizar resultados.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="relative py-32 z-10">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="relative glass-morphism rounded-[3rem] p-12 md:p-20 overflow-hidden">
+
+        <!-- Elementos decorativos -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-neon-pink opacity-20 blur-3xl rounded-full"></div>
+        <div class="absolute bottom-0 left-0 w-64 h-64 bg-neon-blue opacity-20 blur-3xl rounded-full"></div>
+
+        <div class="relative text-center space-y-8">
+          <h2 class="font-syne font-bold text-4xl md:text-6xl">
+            ¿Listo para <span class="gradient-text">romper</span> el mercado?
+          </h2>
+          <p class="text-xl text-gray-400 max-w-2xl mx-auto">
+            Deja de ser una marca más. Conviértete en una experiencia inolvidable.
+          </p>
+
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <button class="px-10 py-5 bg-gradient-to-r from-neon-pink to-neon-purple rounded-full font-bold text-lg neon-glow hover:scale-105 transition-transform">
+              Agendar llamada estratégica →
+            </button>
+            <button class="px-10 py-5 glass-morphism rounded-full font-bold text-lg hover:bg-white hover:bg-opacity-10 transition-all">
+              Ver portfolio
+            </button>
+          </div>
+
+          <div class="pt-8 flex justify-center gap-6">
+            <div class="text-center">
+              <div class="text-3xl font-bold gradient-text">24h</div>
+              <div class="text-sm text-gray-500">Tiempo de respuesta</div>
+            </div>
+            <div class="w-px bg-gray-700"></div>
+            <div class="text-center">
+              <div class="text-3xl font-bold gradient-text">100%</div>
+              <div class="text-sm text-gray-500">Satisfacción</div>
+            </div>
+            <div class="w-px bg-gray-700"></div>
+            <div class="text-center">
+              <div class="text-3xl font-bold gradient-text">∞</div>
+              <div class="text-sm text-gray-500">Creatividad</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="relative py-20 z-10 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-4 gap-12 mb-12">
+
+        <div class="md:col-span-2">
+          <div class="font-syne font-bold text-4xl gradient-text mb-4">NEXUS</div>
+          <p class="text-gray-400 mb-6">
+            Agencia de marketing digital que rompe las reglas y crea experiencias inolvidables.
+          </p>
+          <div class="flex gap-4">
+            <a href="#" class="w-12 h-12 glass-morphism rounded-full flex items-center justify-center hover:bg-neon-pink hover:bg-opacity-20 transition-all">
+              <i class="fa-brands fa-instagram text-xl"></i>
+            </a>
+            <a href="#" class="w-12 h-12 glass-morphism rounded-full flex items-center justify-center hover:bg-neon-blue hover:bg-opacity-20 transition-all">
+              <i class="fa-brands fa-linkedin text-xl"></i>
+            </a>
+            <a href="#" class="w-12 h-12 glass-morphism rounded-full flex items-center justify-center hover:bg-neon-purple hover:bg-opacity-20 transition-all">
+              <i class="fa-brands fa-tiktok text-xl"></i>
+            </a>
+            <a href="#" class="w-12 h-12 glass-morphism rounded-full flex items-center justify-center hover:bg-neon-green hover:bg-opacity-20 transition-all">
+              <i class="fa-brands fa-twitter text-xl"></i>
+            </a>
+          </div>
+        </div>
+
+        <div>
+          <h4 class="font-syne font-bold text-lg mb-4">Servicios</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><a href="#" class="hover:text-neon-pink transition-colors">Branding</a></li>
+            <li><a href="#" class="hover:text-neon-pink transition-colors">Social Media</a></li>
+            <li><a href="#" class="hover:text-neon-pink transition-colors">Meta Ads</a></li>
+            <li><a href="#" class="hover:text-neon-pink transition-colors">Google Ads</a></li>
+            <li><a href="#" class="hover:text-neon-pink transition-colors">Analytics</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-syne font-bold text-lg mb-4">Contacto</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li><i class="fa-solid fa-envelope text-neon-pink mr-2"></i>hola@nexus.agency</li>
+            <li><i class="fa-solid fa-phone text-neon-blue mr-2"></i>+1 (555) 123-4567</li>
+            <li><i class="fa-solid fa-location-dot text-neon-purple mr-2"></i>Ciudad de México</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-sm">
+        <div>© 2025 NEXUS Agency. Todos los derechos reservados.</div>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-white transition-colors">Privacidad</a>
+          <a href="#" class="hover:text-white transition-colors">Términos</a>
+          <a href="#" class="hover:text-white transition-colors">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script>
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Parallax effect en scroll
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const blobs = document.querySelectorAll('.blob');
+      blobs.forEach((blob, index) => {
+        const speed = 0.5 + (index * 0.1);
+        blob.style.transform = `translateY(${scrolled * speed}px)`;
+      });
+    });
+
+    // Hover effect en cards
+    const cards = document.querySelectorAll('.glass-morphism');
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+  </script>
+
+</body>
+</html>
