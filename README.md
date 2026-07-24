@@ -4,6 +4,12 @@ LaunchKit is a free HTML landing page template specifically designed for develop
 
 Read more about its features: https://launchkit.evilmartians.io
 
+---
+
+<img src="https://cdn.evilmartians.com/badges/logo-no-label.svg" alt="Evil Martians logo" width="22" height="16" /> <b>LaunchKit</b> is built by <b><a href="https://evilmartians.com/">Evil Martians</a></b>, an American design and engineering consultancy for <b>developer tools, AI, and cybersecurity startups</b>.
+
+---
+
 ## Why use LaunchKit instead of crafting a landing page from scratch?
 
 1. It’s a ready-to-deploy solution that lets you adjust the content for your product and launch it within a couple of hours.
