@@ -29,8 +29,8 @@
   - Contrast controls how contrast the text colors will be.
   */
   --theme-hue: 255;
-  --theme-saturation: 0.2; /* 0...1 where 0 means grayscale colors; 1 means fully saturated colors */
-  --theme-contrast: 0.8; /* 0...1 where 0 means low contrast; 1 means high contrast, black-n-white in fact */
+  --theme-saturation: 0.3; /* 0...1 where 0 means grayscale colors; 1 means fully saturated colors */
+  --theme-contrast: 0.85; /* 0...1 where 0 means low contrast; 1 means high contrast, black-n-white in fact */
 
   /* Fonts */
   --font-text: "Inter Variable", Arial, sans-serif;
@@ -98,6 +98,7 @@
   --color-gradient-bg-end: #0081ff00;
   --color-gradient-promo-start: #800069;
   --color-gradient-promo-end: #005196;
+  --color-focus: #0081ff;
 }
 
 .theme-light {
@@ -145,6 +146,8 @@
 
   --color-gradient-promo-start: #ffd2f7;
   --color-gradient-promo-end: #b9dfff;
+
+  --color-focus: var(--color-accent);
 }
 
 .theme-dark {
@@ -196,6 +199,8 @@
 
   --color-gradient-promo-start: #800069;
   --color-gradient-promo-end: #005196;
+
+  --color-focus: var(--color-accent);
 }
 
 .page-container {
@@ -221,6 +226,11 @@ body {
   color: var(--color-text-primary);
   font-size: var(--font-size-m);
   line-height: var(--line-height-paragraph-m);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
 }
 
 /* Headers */
@@ -577,13 +587,19 @@ section {
   border-radius: var(--radius-l);
   max-width: 1008px;
   padding: 12px 12px 12px 16px;
-  z-index: 1000;
+  z-index: 300;
 }
 
 .nav-brand {
   display: flex;
+  gap: 16px;
   align-items: center;
   justify-content: center;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 0;
 }
 
 .nav-link {
